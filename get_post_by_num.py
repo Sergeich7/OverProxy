@@ -92,15 +92,7 @@ def get_post_by_num(post_num=1, r_host='localhost', r_port=6379, r_pass=''):
     r.delete('total_blk')
 
     # запрашиваем пост по номеру
-    url = f'{p_urls}{post_num}'
-
-    # для отладки:
-    # stats[0] - урл
-    # stats[1] - количество запросов через него
-    # url - полный урл запроса
-    print(url)
-
-    req = requests.get(url)
+    req = requests.get(f'{p_urls}{post_num}')
 
     # снимаем блокировку сразу после выполнения запроса
     r.delete(f'blk+{p_urls}+{sfx}')
